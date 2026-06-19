@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -25,4 +25,54 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+/**
+ * Custom sourcing requests from "Ask the Plug" page
+ */
+export const customRequests = mysqlTable("custom_requests", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  whatsapp: varchar("whatsapp", { length: 20 }).notNull(),
+  itemDescription: text("itemDescription").notNull(),
+  status: mysqlEnum("status", ["pending", "in_progress", "completed"]).default("pending").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CustomRequest = typeof customRequests.$inferSelect;
+export type InsertCustomRequest = typeof customRequests.$inferInsert;
+
+/**
+ * Customer reviews and testimonials
+ */
+export const reviews = mysqlTable("reviews", {
+  id: int("id").autoincrement().primaryKey(),
+  customerName: varchar("customerName", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  rating: int("rating").notNull(), // 1-5 stars
+  reviewText: text("reviewText").notNull(),
+  isApproved: boolean("isApproved").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Review = typeof reviews.$inferSelect;
+export type InsertReview = typeof reviews.$inferInsert;
+
+/**
+ * Blog posts for SkinPlug education section
+ */
+export const blogPosts = mysqlTable("blog_posts", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  excerpt: text("excerpt"),
+  content: text("content").notNull(),
+  category: varchar("category", { length: 100 }).default("skincare").notNull(),
+  isPublished: boolean("isPublished").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;

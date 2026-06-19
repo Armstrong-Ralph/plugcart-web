@@ -5,34 +5,46 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Shop from "./pages/Shop";
+import AskThePlug from "./pages/AskThePlug";
+import Delivery from "./pages/Delivery";
+import SkinPlug from "./pages/SkinPlug";
+import SkinPlugArticle from "./pages/SkinPlugArticle";
+import AboutUs from "./pages/AboutUs";
+import SubmitReview from "./pages/SubmitReview";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/shop"} component={Shop} />
+      <Route path={"/ask-the-plug"} component={AskThePlug} />
+      <Route path={"/delivery"} component={Delivery} />
+      <Route path={"/skinplug"} component={SkinPlug} />
+      <Route path={"/skinplug/:slug"} component={SkinPlugArticle} />
+      <Route path={"/about"} component={AboutUs} />
+      <Route path={"/submit-review"} component={SubmitReview} />
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <div className="flex flex-col min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50">
+            <Navigation />
+            <main className="flex-1">
+              <Router />
+            </main>
+            <Footer />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
