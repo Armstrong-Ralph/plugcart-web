@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PlugCart — your shopping plug for campus essentials, requests, and skincare education." />
+    <title>PlugCart — Your Shopping Plug</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to shop</a>
+    <header class="site-header">
+      <div class="header-canvas">
+        <a class="wordmark" href="#home" aria-label="PlugCart home">
+          <strong>PlugCart</strong><span>Your shopping plug</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#shop">Shop</a>
+          <a href="#the-plug">The Plug</a>
+          <a href="#points">PlugPoints</a>
+          <a href="#about">About</a>
+        </nav>
+        <button class="cart-button" id="open-cart" type="button" aria-label="Open preview Cart">
+          <span aria-hidden="true">🛒</span><span class="cart-label">Cart</span><b id="cart-count">0</b>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="home" class="hero section-anchor">
+        <div class="hero-copy">
+          <p class="eyebrow light">Your shopping plug</p>
+          <h1>Campus shopping,<br />made easier.</h1>
+          <p>Discover essentials, request what you need, and keep every order in one place with PlugCart.</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#shop">Shop now <span aria-hidden="true">→</span></a>
+            <a class="button button-ghost" href="#the-plug">Make a request</a>
+          </div>
+        </div>
+        <div class="hero-mark" aria-hidden="true">⌁</div>
+      </section>
+
+      <section class="utility-grid content-canvas" aria-label="PlugCart quick links">
+        <a class="utility-card" href="#points"><span class="utility-icon">✦</span><span><small>Your PlugPoints</small><strong>See how rewards work</strong></span><i>›</i></a>
+        <button class="utility-card" id="open-cart-card" type="button"><span class="utility-icon">🛒</span><span><small>Your Cart</small><strong>Start adding essentials</strong></span><i>›</i></button>
+      </section>
+
+      <section class="content-canvas explore" aria-labelledby="explore-title">
+        <div class="section-heading"><p class="eyebrow">Explore PlugCart</p><h2 id="explore-title">Everything in one place</h2></div>
+        <div class="area-grid">
+          <a class="area-card" href="#shop"><span>▣</span><h3>The Shopping Plug</h3><p>Clothing, accessories, gadgets, and more.</p><b>→</b></a>
+          <a class="area-card" href="#the-plug"><span>✦</span><h3>PlugCart the Plug</h3><p>Request it. Source it. Get it.</p><b>→</b></a>
+          <a class="area-card" href="#about"><span>◈</span><h3>PlugCart Perfumery</h3><p>Find your signature scent.</p><b>→</b></a>
+          <a class="area-card" href="#skinplug"><span>◉</span><h3>SkinPlug</h3><p>Free skincare education, coming soon.</p><b>→</b></a>
+        </div>
+      </section>
+
+      <section id="shop" class="shop content-canvas section-anchor" aria-labelledby="shop-title">
+        <div class="shop-topline">
+          <div><p class="eyebrow">The shopping plug</p><h2 id="shop-title">Find your next essential</h2></div>
+          <p class="catalogue-note">Current catalogue display</p>
+        </div>
+        <label class="search-label" for="product-search"><span aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Search products" /></label>
+        <div class="filters" id="category-filters" aria-label="Shop categories"></div>
+        <p id="product-count" class="product-count"></p>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="the-plug" class="content-canvas split section-anchor">
+        <div><p class="eyebrow">PlugCart the Plug</p><h2>Need something else?</h2><p>Send PlugCart a request for sourcing, services, or a custom order. The team will confirm availability and the next step with you.</p><a class="button button-primary" href="https://wa.me/2349044688783" target="_blank" rel="noreferrer">Request on WhatsApp</a></div>
+        <aside class="notice-card"><span>✦</span><h3>Request it. Source it. Get it.</h3><p>Availability and final pricing are confirmed directly with you before any order is placed.</p></aside>
+      </section>
+
+      <section id="points" class="content-canvas points section-anchor">
+        <div><p class="eyebrow">PlugPoints</p><h2>Rewards for eligible physical products.</h2></div>
+        <div class="points-grid"><article><b>3%</b><p>Cash-paid eligible physical-product reward, capped at ₦1,000 per order.</p></article><article><b>₦1,000</b><p>Welcome reward after the qualifying paid physical-product order.</p></article><article><b>Manual</b><p>Redemption is always a deliberate checkout choice. Services and delivery are excluded.</p></article></div>
+      </section>
+
+      <section id="about" class="content-canvas about section-anchor">
+        <p class="eyebrow">About PlugCart</p><h2>A shopping plug built for campus life.</h2>
+        <p>PlugCart brings shopping, requests, and useful lifestyle discovery into one place. Product photos and availability are updated by PlugCart as they are approved.</p>
+      </section>
+
+      <section id="skinplug" class="content-canvas skinplug section-anchor"><p class="eyebrow">SkinPlug</p><h2>Free skincare education, coming soon.</h2><p>SkinPlug is the fun learning side of PlugCart for people who want to understand skincare without ruining their skin.</p></section>
+    </main>
+
+    <footer><div class="footer-canvas"><div><strong>PlugCart</strong><p>Your shopping plug.</p></div><p>Product photos marked “Photo being added” are awaiting owner-approved media.</p><a href="https://wa.me/2349044688783" target="_blank" rel="noreferrer">Contact PlugCart</a></div></footer>
+
+    <dialog id="cart-dialog" aria-labelledby="cart-title"><div class="dialog-head"><div><p class="eyebrow">Preview Cart</p><h2 id="cart-title">Your selected items</h2></div><button id="close-cart" class="close-button" type="button" aria-label="Close Cart">×</button></div><div id="cart-lines" class="cart-lines"></div><div class="cart-total"><span>Preview subtotal</span><strong id="cart-total">₦0</strong></div><p class="checkout-note">This GitHub-hosted site keeps this preview Cart in your browser. Secure sign-in, server Cart, PlugPoints, payments, orders, and owner operations require PlugCart’s backend service and are not processed here.</p><a class="button button-primary full" href="https://wa.me/2349044688783" target="_blank" rel="noreferrer">Ask PlugCart about your Cart</a></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
