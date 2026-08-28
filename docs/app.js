@@ -23,6 +23,8 @@ const cartCount = document.querySelector("#cart-count");
 const dialog = document.querySelector("#cart-dialog");
 const cartLines = document.querySelector("#cart-lines");
 const cartTotal = document.querySelector("#cart-total");
+const installButton = document.querySelector("#install-app");
+let deferredInstallPrompt = null;
 
 function categories() { return ["All", ...new Set(products.map((product) => product.category))]; }
 function persistCart() { localStorage.setItem("plugcart-preview-cart", JSON.stringify(state.cart)); }
@@ -54,6 +56,20 @@ function renderCart() {
   cartTotal.textContent = money.format(cartSubtotal());
   cartLines.querySelectorAll("[data-change]").forEach((button) => button.addEventListener("click", () => setCart(button.dataset.change, Number(button.dataset.value))));
 }
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installButton.hidden = false;
+});
+installButton.addEventListener("click", async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installButton.hidden = true;
+});
+window.addEventListener("appinstalled", () => { deferredInstallPrompt = null; installButton.hidden = true; });
 
 searchInput.addEventListener("input", (event) => { state.search = event.target.value; renderProducts(); });
 document.querySelector("#open-cart").addEventListener("click", () => dialog.showModal());
