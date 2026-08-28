@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="PlugCart — your shopping plug for campus essentials, requests, and skincare education." />
+    <meta name="theme-color" content="#8d5dcc" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="PlugCart" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
     <title>PlugCart — Your Shopping Plug</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -21,6 +29,7 @@
           <a href="#points">PlugPoints</a>
           <a href="#about">About</a>
         </nav>
+        <button class="install-button" id="install-app" type="button" hidden>Install</button>
         <button class="cart-button" id="open-cart" type="button" aria-label="Open preview Cart">
           <span aria-hidden="true">🛒</span><span class="cart-label">Cart</span><b id="cart-count">0</b>
         </button>
@@ -89,5 +98,10 @@
 
     <dialog id="cart-dialog" aria-labelledby="cart-title"><div class="dialog-head"><div><p class="eyebrow">Preview Cart</p><h2 id="cart-title">Your selected items</h2></div><button id="close-cart" class="close-button" type="button" aria-label="Close Cart">×</button></div><div id="cart-lines" class="cart-lines"></div><div class="cart-total"><span>Preview subtotal</span><strong id="cart-total">₦0</strong></div><p class="checkout-note">This GitHub-hosted site keeps this preview Cart in your browser. Secure sign-in, server Cart, PlugPoints, payments, orders, and owner operations require PlugCart’s backend service and are not processed here.</p><a class="button button-primary full" href="https://wa.me/2349044688783" target="_blank" rel="noreferrer">Ask PlugCart about your Cart</a></dialog>
     <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js", { scope: "./" }));
+      }
+    </script>
   </body>
 </html>
